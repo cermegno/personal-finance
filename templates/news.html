@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+       <h3 class="panel-title">Latest News</h3>
+    </div>
+    <div class="panel-body">
+		<div class="list-group">
+
+		{% set l = news|length %}
+		{% for n in range(l) %}
+			<a href="{{ links[n] }}" target="_blank" class="list-group-item">{{ news[n] }}</a>
+		{% endfor %}
+		</div>
+	</div>
+  </div>
+</div>
+		
+<nav aria-label="Page navigation2">
+  <ul class="pager">
+  
+    {% if page > 1 %}
+    {% set prevp = page - 1 %}
+    <li><a href="/news/page/{{ prevp }}">Previous</a></li>
+    {% endif %}
+
+    {% if page < maxpage %}
+	{% set nextp = page + 1 %}
+    <li><a href="/news/page/{{ nextp }}">Next</a></li>
+	{% endif %}
+
+  </ul>
+</nav>
+
+{% endblock %}
